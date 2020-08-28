@@ -1,4 +1,4 @@
-$(function () {
+var showhide = function () {
     //Register events
     registerChangeEventForRadioButtons();
     if (typeof ddlShowHideConfiguration != "undefined")
@@ -70,4 +70,8 @@ $(function () {
         $('.field-validation-error').parent('.field').find('input:radio').change(function () { $(this).parent().removeClass("input-validation-error") });
 
     });
-});
+
+    triggerChangeOnLoad();
+};
+
+$(function () { showhide(); });
