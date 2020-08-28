@@ -1,11 +1,11 @@
-﻿$(function () {
-
+$(function () {
     //Register events
     registerChangeEventForRadioButtons();
-    ddlShowHideConfiguration.config.forEach(registerChangeEventForDdls);
+    if (typeof ddlShowHideConfiguration != "undefined")
+        ddlShowHideConfiguration.config.forEach(registerChangeEventForDdls);
 
     function registerChangeEventForRadioButtons() {
-        
+
         $('input[type=radio][data-showdivid],[data-hidedivid]').change(showHideOnRadioChanged);
     }
 
@@ -16,15 +16,13 @@
 
     function showHideOnRadioChanged() {
         var $radio = $(this)
-        var show_divSelector= $radio.data('showdivid');
+        var show_divSelector = $radio.data('showdivid');
         var hide_divSelector = $radio.data('hidedivid');
 
-        if ($('input:radio[id="' + this.id + '"]:checked').val() === "True") {
+        var idOfSelectedItem = $('input:radio[id="' + this.id + '"]:checked').attr('id');
+
+        if (this.id === idOfSelectedItem)
             showHideDivs(show_divSelector, hide_divSelector);
-        }
-        else if ($('input:radio[id="' + this.id + '"]:checked').val() === "False") {
-            showHideDivs(show_divSelector, hide_divSelector);
-        }
 
         $(show_divSelector).removeClass("input-validation-error");
         $(hide_divSelector).removeClass("input-validation-error");
@@ -61,7 +59,8 @@
     //fire onChange individually if a sequence is needed.
     function triggerChangeOnLoad() {
         $('input[type=radio][data-showdivid],[data-hidedivid]').trigger('change');
-        ddlShowHideConfiguration.config.forEach(function (item) { return $('#' + item.ddlId).trigger('change'); });
+        if (typeof ddlShowHideConfiguration != "undefined")
+            ddlShowHideConfiguration.config.forEach(function (item) { return $('#' + item.ddlId).trigger('change'); });
     }
 
 
@@ -71,5 +70,4 @@
         $('.field-validation-error').parent('.field').find('input:radio').change(function () { $(this).parent().removeClass("input-validation-error") });
 
     });
-
 });
