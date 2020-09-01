@@ -35,6 +35,7 @@ var showhide = function () {
         $(hide_divSelector).find('input:radio').prop('checked', false);
         $(hide_divSelector).find('input:radio').trigger('change');
         $(hide_divSelector).find('input:text').val('');
+        
     }
 
     function showHideOnDdlChanged(item) {
@@ -59,7 +60,7 @@ var showhide = function () {
     //fire onChange individually if a sequence is needed.
     function triggerChangeOnLoad() {
         $('input[type=radio][data-showdivid],[data-hidedivid]').trigger('change');
-        if (typeof ddlShowHideConfiguration != "undefined")
+        if (typeof ddlShowHideConfiguration !== "undefined")
             ddlShowHideConfiguration.config.forEach(function (item) { return $('#' + item.ddlId).trigger('change'); });
     }
 
