@@ -9,7 +9,7 @@ var showhide = function () {
         $('input[type=radio][data-showdivid],[data-hidedivid]').change(showHideOnRadioChanged);
     }
 
-    function registerChangeEventForDdls(item, index, arr) {
+    function registerChangeEventForDdls(item) {
         $('select[id=' + item.ddlId + ']').change(function () { return showHideOnDdlChanged(item); });
     }
 
