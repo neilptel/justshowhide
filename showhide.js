@@ -35,7 +35,7 @@ var showhide = function () {
         $(hide_divSelector).find('input:radio').prop('checked', false);
         $(hide_divSelector).find('input:radio').trigger('change');
         $(hide_divSelector).find('input:text').val('');
-        
+	$(hide_divSelector).find('select').val('').change();
     }
 
     function showHideOnDdlChanged(item) {
